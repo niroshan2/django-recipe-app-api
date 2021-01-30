@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+      # The volume allows us to get the updates that we make to our project
+      # Into our Docker image in real time. So it maps of volume from our local machine here into our Docker container that will be running our application.
+      # This means that whenever you change a file or you change something in the project it'll be automatically
+      # updated in the container and you don't need to restart Docker to get the changes into effect.
+    volumes:
+      - ./app:/app
+      # command that is used to run our application in our Docker container
+      # so to do this you type command: on and I'm going to break the command into the next line because
+      # I find that if you have lots of commands on one line then it gets quite messy and hard to read.
+      # So you do that using this greater than symbol and then you just make sure the indentation is one indent
+      # from where command starts and then you type the command. Command that we're going to use to run our application
+      # is going to be sh -c
+      # This means we're going to run the command using shell so it says shell run command and then in these
+      # speech marks here we type the command. I'm going to type python
+      # manage.py runserver
+      # Then the host that we're going to run the server on which is 0.0.0.0.: 8000
+      # So this will run the Django development server available on all the IP addresses that run on the Docker
+      # container.
+      # That's what this 0.0.0.0. does. And it's going to run on port 8000 which
+      # is going to be mapped through the ports configuration to our local machine.
+      # So we can run our application and we can connect to it on port 8000 on our local machine.
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"

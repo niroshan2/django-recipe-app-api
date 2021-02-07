@@ -15,6 +15,12 @@ class UserManager(BaseUserManager):
 
         return user
 
+    # create super user function.
+    # Create super user is a function used by the Django CLI when
+    # we're creating new users using the command line.
+    # So we want to make sure
+    # it's included in our custom user model so that we can take advantage of the
+    # Django management command for creating a super user.
     def create_superuser(self, email, password):
         """Creates and saves a new super user"""
         user = self.create_user(email, password)
@@ -35,10 +41,3 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-
-# create super user function.
-# Create super user is a function used by the Django CLI when
-# we're creating new users using the command line.
-# So we want to make sure
-# it's included in our custom user model so that we can take advantage of the
-# Django management command for creating a super user.

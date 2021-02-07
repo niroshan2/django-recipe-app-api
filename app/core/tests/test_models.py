@@ -2,11 +2,15 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 
 
-# 'from django.contrib.auth import get_user_model' helper function that comes with Django.
-# You can import the user model directly from the models but this is not recommended with django because at some
-# point in the project you may want to change what your user model is and if
-# everything is using the get user model function then that's really easy to do
-# because you just change it in the settings instead of having to change all the references to the user model.
+# 'from django.contrib.auth import get_user_model' helper
+# function that comes with Django.
+# You can import the user model directly from the models but this is
+# not recommended with django because at some
+# point in the project you may want to change what your user
+# model is and if everything is using the get user
+# model function then that's really easy to do
+# because you just change it in the settings instead of
+# having to change all the references to the user model.
 class ModelTests(TestCase):
 
     def test_create_user_with_email_successful(self):
